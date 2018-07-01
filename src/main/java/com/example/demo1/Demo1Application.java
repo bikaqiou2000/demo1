@@ -17,7 +17,6 @@ public class Demo1Application {
         SpringApplication.run(Demo1Application.class, args);
     }
 
-
     @Bean
     public CommandLineRunner commandLineRunner (ApplicationContext context){
         return  new CommandLineRunner() {
@@ -26,8 +25,15 @@ public class Demo1Application {
                 System.out.println("Bean 详细情况--------------------");
                 var beanNames = context.getBeanDefinitionNames();
                 Arrays.sort(beanNames);
+                Arrays.stream(beanNames).forEach( x -> System.out.println(x));
+                //Arrays.stream(beanNames).peek( x -> System.out.println(x)).count(); //无效
 
-                Arrays.stream(beanNames).peek( x -> System.out.println(x));
+//                System.out.println("Let's inspect the beans provided by Spring Boot:");
+//                String[] beanNames = context.getBeanDefinitionNames();
+//                Arrays.sort(beanNames);
+//                for (String beanName : beanNames) {
+//                    System.out.println(beanName);
+//                }
             }
         };
     }
